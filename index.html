@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>開箱模擬器</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #211D35;
+      color: white;
+      font-family: "Noto Sans TC", sans-serif;
+      text-align: center;
+    }
+
+    .container {
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: clamp(20px, 3vw, 30px);
+      font-weight: normal;
+      color: #D7CFF5;
+      margin-bottom: 48px;
+    }
+
+    .start-button {
+      display: inline-block;
+      padding: 16px 48px;
+      background: #A78BFA;
+      color: #211D35;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: 0.25s;
+    }
+
+    .start-button:hover {
+      background: #C4B5FD;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>這是一個開箱模擬器!</h1>
+    <h2>今天的運氣如何呢?</h2>
+    <a class="start-button" href="luck_test_box.html">
+      開始 →
+    </a>
+  </main>
+</body>
+</html>
