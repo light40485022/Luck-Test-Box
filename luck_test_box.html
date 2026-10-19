@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10141b">
+<title>Luck Test Box — 開箱測試</title>
+<style>
+:root{--bg:#141820;--panel:#1b212c;--panel2:#222a37;--line:#343d4c;--text:#eef2f8;--muted:#9ba8ba;--accent:#f3b64c;--common:#e0e0e0;--uncommon:#3b82f6;--epic:#a855f7;--legendary:#f97316;--mythic:#ef4444}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;background:radial-gradient(ellipse at 50% 10%,color-mix(in srgb,var(--rarity-bg,#64748b) 17%,transparent),transparent 55%),linear-gradient(135deg,#11151c,#171d27 65%,#10141b);transition:background .6s;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.15;background-image:linear-gradient(#fff1 1px,transparent 1px),linear-gradient(90deg,#fff1 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+button{font:inherit;cursor:pointer;color:inherit;border:1px solid var(--line);background:#252d3a;border-radius:10px;padding:10px 14px;transition:transform .15s,border-color .15s,background .15s}button:hover{border-color:#69778c;background:#303b4c}button:active{transform:scale(.97)}button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.topbar{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px clamp(16px,4vw,48px);border-bottom:1px solid #ffffff12;background:#11151bd9;backdrop-filter:blur(12px)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.04em}.brand-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:linear-gradient(145deg,#f6c768,#b97824);color:#191b20;font-size:23px;box-shadow:0 6px 24px #f3b64c30}.brand small{display:block;color:var(--muted);font-size:11px;font-weight:600;letter-spacing:.16em;margin-top:2px}
+.top-actions{display:flex;gap:8px;align-items:center}.btn-quiet{background:#1a202a}.icon-btn{width:42px;height:42px;padding:0;font-size:18px}
+main{position:relative;z-index:1;width:min(1120px,calc(100% - 32px));margin:0 auto;padding:38px 0 64px}
+.eyebrow{color:var(--accent);font-size:11px;letter-spacing:.22em;font-weight:800;text-transform:uppercase}.hero{text-align:center;margin-bottom:30px}.hero h1{font-size:clamp(27px,4vw,42px);line-height:1.15;margin:9px 0 10px;letter-spacing:-.04em}.hero p{margin:0;color:var(--muted);font-size:14px}
+.game-panel{border:1px solid #ffffff17;background:linear-gradient(145deg,#1b222dF2,#151a23F5);border-radius:22px;padding:clamp(18px,4vw,36px);box-shadow:0 25px 80px #0005,inset 0 1px #ffffff08;overflow:hidden}
+.status-row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.status-pill{display:flex;align-items:center;gap:8px;padding:7px 11px;background:#111720;border:1px solid var(--line);border-radius:999px;font-size:12px;color:var(--muted)}.dot{width:7px;height:7px;border-radius:50%;background:#70d6a2;box-shadow:0 0 12px #70d6a280}.total-stat{font-size:12px;color:var(--muted)}.total-stat strong{color:var(--text);font-size:15px}
+.stage{position:relative;min-height:280px;display:grid;place-items:center;padding:20px 0 8px}.floor-glow{position:absolute;width:min(420px,80%);height:70px;bottom:14px;border-radius:50%;background:var(--stage-color,#64748b);opacity:.16;filter:blur(30px)}
+.crate-button{position:relative;z-index:1;width:190px;height:178px;border:0;background:transparent;padding:0;display:grid;place-items:center;filter:drop-shadow(0 18px 18px #0006);animation:float 3.2s ease-in-out infinite}
+.crate-button:hover{background:transparent;border:0;filter:drop-shadow(0 22px 25px #0008)}.crate-button:active{transform:scale(.94)}.crate-svg{width:100%;height:100%;overflow:visible}.crate-button.shake{animation:shake .32s ease-in-out}.crate-button.opening .crate-lid{transform:translate(-7px,-23px) rotate(-9deg);transform-origin:55% 65%;transition:transform .38s ease}.crate-lid{transition:transform .3s}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -7px}}@keyframes shake{0%,100%{transform:translateX(0) rotate(0) scale(1)}20%{transform:translateX(-5px) rotate(-2deg) scale(1.03)}45%{transform:translateX(5px) rotate(2deg) scale(1.05)}70%{transform:translateX(-3px) rotate(-1deg) scale(1.02)}}
+.click-label{font-size:12px;color:var(--muted);margin-top:-8px;letter-spacing:.08em}.progress-wrap{width:min(430px,100%);margin:0 auto;text-align:center}.progress-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}.progress-head span{font-size:12px;color:var(--muted)}.progress-head strong{font-size:22px;letter-spacing:.02em}.progress-track{height:9px;background:#0e1218;border:1px solid #ffffff0c;border-radius:999px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#d89435,#f7d17c);border-radius:999px;transition:width .12s;box-shadow:0 0 18px #f3b64c55}.hint{font-size:12px;color:var(--muted);margin:12px 0 0}.hint kbd{font:inherit;color:#d9e1ed;background:#303847;padding:2px 6px;border-radius:5px}
+.bottom-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}.mini-stat{border:1px solid #ffffff10;background:#11172080;border-radius:13px;padding:14px 16px}.mini-stat span{display:block;color:var(--muted);font-size:11px;margin-bottom:6px}.mini-stat strong{font-size:18px}.mini-stat em{font-style:normal;color:var(--muted);font-size:11px;margin-left:4px}
+.odds-section{margin-top:26px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:13px}.section-head h2{font-size:15px;margin:0}.section-head p{font-size:11px;color:var(--muted);margin:4px 0 0}.rarity-bars{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.rarity-bar{padding:12px 10px;border:1px solid #ffffff12;border-radius:10px;background:#11172080;min-width:0}.rarity-bar .bar-top{display:flex;align-items:center;justify-content:space-between;gap:4px;font-size:11px;font-weight:800}.rarity-bar .pct{font-size:11px;color:var(--muted);margin-top:6px}.rarity-bar .line{height:3px;background:#ffffff12;border-radius:5px;margin-top:9px;overflow:hidden}.rarity-bar .line i{display:block;height:100%;border-radius:5px}
+footer{text-align:center;color:#7f8b9d;font-size:11px;margin:24px 0 0}
+.drawer-scrim,.modal-scrim,.spin-overlay{position:fixed;inset:0;z-index:20;background:#05070bd9;backdrop-filter:blur(7px);display:none}.drawer-scrim.show,.modal-scrim.show{display:block}.drawer{position:fixed;z-index:21;right:0;top:0;height:100dvh;width:min(520px,100%);background:#171d27;border-left:1px solid #ffffff18;box-shadow:-30px 0 80px #0007;transform:translateX(105%);transition:transform .3s ease;display:flex;flex-direction:column}.drawer.show{transform:translateX(0)}.drawer-head{padding:22px 22px 16px;border-bottom:1px solid #ffffff12;display:flex;align-items:center;justify-content:space-between}.drawer-head h2{font-size:20px;margin:0}.drawer-head p{color:var(--muted);font-size:12px;margin:5px 0 0}.drawer-content{padding:18px;overflow:auto;flex:1}.collection-summary{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:#111720;border:1px solid var(--line);border-radius:12px;margin-bottom:20px;font-size:12px;color:var(--muted)}.collection-summary strong{font-size:17px;color:var(--text)}.rarity-group{margin-bottom:22px}.rarity-title{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:800;margin-bottom:10px}.rarity-title span:last-child{font-size:11px;color:var(--muted);font-weight:500}.item-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.collection-item{padding:11px 4px 9px;min-width:0;min-height:92px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;background:#111720;border:1px solid #ffffff12;border-radius:10px}.collection-item .emoji{font-size:25px;line-height:1}.collection-item .item-name{font-size:10px;color:#cbd3df;text-align:center;overflow-wrap:anywhere}.collection-item.locked{background:#0c1016;border-color:#ffffff08}.collection-item.locked .emoji{filter:grayscale(1) brightness(.17);opacity:.8}.collection-item.locked .item-name{color:#555e6b}.drawer-foot{padding:16px 20px;border-top:1px solid #ffffff12;display:flex;gap:10px}.drawer-foot button{flex:1}.danger{border-color:#713b40;color:#ff9c9c;background:#2a191e}.danger:hover{background:#422126;border-color:#a54b54}
+.modal-scrim{z-index:30;display:none;place-items:center;padding:20px}.modal-scrim.show{display:grid}.modal{width:min(380px,100%);padding:25px;background:#1b222d;border:1px solid #ffffff1c;border-radius:20px;box-shadow:0 30px 100px #0009;text-align:center}.modal .big-emoji{font-size:65px;margin:10px 0 16px;filter:drop-shadow(0 8px 15px #0005)}.modal h3{font-size:21px;margin:0 0 6px}.modal .sub{font-size:12px;color:var(--muted);margin:0 0 20px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;text-align:left}.detail-cell{padding:12px;background:#111720;border-radius:10px}.detail-cell span{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.detail-cell strong{font-size:14px}.modal-actions{display:flex;gap:9px;margin-top:18px}.modal-actions button{flex:1}.primary{background:linear-gradient(135deg,#f4c46a,#d99334);border-color:#e9ae4c;color:#1c1a15;font-weight:900}.primary:hover{background:linear-gradient(135deg,#ffda8d,#edaa47)}
+.confirm-copy{font-size:13px;line-height:1.6;color:#b7c1cf;margin:10px 0 22px}
+.spin-overlay{z-index:25;display:none;align-items:center;justify-content:center;padding:20px;background:#080b11f2}.spin-overlay.show{display:flex}.spin-window{width:min(980px,100%);text-align:center}.spin-eyebrow{font-size:11px;color:var(--accent);font-weight:800;letter-spacing:.22em}.spin-window h2{font-size:clamp(23px,4vw,35px);margin:10px 0 7px}.spin-window>p{font-size:13px;color:var(--muted);margin:0 0 28px}.reel-shell{position:relative;overflow:hidden;border:1px solid #ffffff20;background:linear-gradient(180deg,#111720,#171e29);border-radius:16px;padding:16px 0;box-shadow:inset 0 0 35px #0005}.reel-shell:before,.reel-shell:after{content:"";position:absolute;top:0;bottom:0;width:12%;z-index:2;pointer-events:none}.reel-shell:before{left:0;background:linear-gradient(90deg,#111720,transparent)}.reel-shell:after{right:0;background:linear-gradient(270deg,#111720,transparent)}.pointer{position:absolute;z-index:5;top:0;bottom:0;left:50%;width:2px;background:#f6c768;box-shadow:0 0 15px #f6c768aa}.pointer:before{content:"";position:absolute;top:0;left:-6px;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid #f6c768}.reel-track{display:flex;gap:10px;transform:translateX(0);will-change:transform;padding:10px 0}.reel-card{flex:0 0 112px;height:144px;border:1px solid #ffffff22;border-radius:10px;background:#252d38;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;position:relative;overflow:hidden}.reel-card:before{content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--rarity)}.reel-card .reel-emoji{font-size:39px;filter:drop-shadow(0 5px 7px #0005)}.reel-card .reel-name{font-size:10px;color:#e2e8f0;text-align:center;padding:0 5px}.reel-card.target{outline:2px solid var(--rarity);box-shadow:0 0 30px color-mix(in srgb,var(--rarity) 35%,transparent)}.spin-status{margin-top:20px;color:var(--muted);font-size:12px}.win-result{display:none;margin:22px auto 0;padding:14px;width:min(440px,100%);border:1px solid color-mix(in srgb,var(--win-color) 60%,#ffffff15);border-radius:14px;background:color-mix(in srgb,var(--win-color) 12%,#171d27);animation:result-in .4s ease}.win-result.show{display:flex;align-items:center;justify-content:center;gap:15px}.win-emoji{font-size:43px}.win-label{text-align:left}.win-label small{display:block;color:var(--muted);font-size:10px;letter-spacing:.12em}.win-label strong{display:block;font-size:19px;margin:3px 0}.win-label span{font-size:11px;color:var(--win-color)}.dismiss-hint{display:none;font-size:12px;color:#d4dbe5;margin-top:18px}.dismiss-hint.show{display:block;animation:pulse 1.4s infinite}@keyframes pulse{50%{opacity:.55}}@keyframes result-in{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+.toast{position:fixed;z-index:50;left:50%;bottom:24px;transform:translate(-50%,20px);padding:11px 16px;border-radius:999px;background:#e8edf5;color:#151a22;font-size:12px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 10px 30px #0004}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:650px){.topbar{padding:13px 14px}.brand{font-size:13px;gap:9px}.brand-icon{width:36px;height:36px}.top-actions button{padding:8px 10px;font-size:12px}.top-actions .icon-btn{width:38px;height:38px;padding:0;font-size:17px}main{width:calc(100% - 22px);padding-top:26px}.game-panel{border-radius:17px;padding:17px 14px}.stage{min-height:235px}.crate-button{width:160px;height:150px}.bottom-stats{gap:7px;margin-top:22px}.mini-stat{padding:12px 10px}.mini-stat strong{font-size:15px}.mini-stat em{display:block;margin:4px 0 0}.rarity-bars{grid-template-columns:repeat(2,1fr)}.rarity-bar:last-child{grid-column:span 2}.item-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.reel-card{flex-basis:84px;height:125px}.reel-card .reel-emoji{font-size:32px}.reel-card .reel-name{font-size:9px}.reel-shell{padding:10px 0}.spin-window>p{margin-bottom:18px}.win-result.show{gap:10px}.win-emoji{font-size:35px}.win-label strong{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-icon">箱</div><div>LUCK TEST BOX<small>OPEN YOUR FATE</small></div></div>
+  <div class="top-actions"><button id="soundToggle" class="icon-btn btn-quiet" aria-label="切換音效" title="切換音效">🔊</button><button id="collectionOpen" class="btn-quiet">▤ 圖鑑 <span id="headerCollectionCount">0/50</span></button></div>
+</header>
+<main>
+  <section class="hero"><div class="eyebrow">CASE OPENING SIMULATOR</div><h1>今天的運氣如何？</h1><p>點擊箱子，累積開箱機會，看看你能收集到哪些稀有戰利品。</p></section>
+  <section class="game-panel">
+    <div class="status-row"><div class="status-pill"><i class="dot"></i><span id="statusText">系統就緒 · 等待開箱</span></div><div class="total-stat">累計開箱 <strong id="totalOpensTop">0</strong> 次</div></div>
+    <div class="stage"><div class="floor-glow" id="floorGlow"></div>
+      <button class="crate-button" id="crateButton" aria-label="點擊箱子累積進度">
+        <svg class="crate-svg" viewBox="0 0 220 200" aria-hidden="true">
+          <defs><linearGradient id="woodFront" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#d69a48"/><stop offset="1" stop-color="#885126"/></linearGradient><linearGradient id="woodSide" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a96d34"/><stop offset="1" stop-color="#59351f"/></linearGradient><linearGradient id="woodLid" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#f0bd68"/><stop offset="1" stop-color="#b97835"/></linearGradient></defs>
+          <g class="crate-lid"><path d="M30 64 L110 25 L190 64 L110 103Z" fill="#f1c274" stroke="#57371f" stroke-width="4"/><path d="M30 64 L110 103 L110 119 L30 80Z" fill="#9b602d" stroke="#57371f" stroke-width="3"/><path d="M110 103 L190 64 L190 80 L110 119Z" fill="#bd7d3d" stroke="#57371f" stroke-width="3"/><path d="M52 65 L110 37 L168 65 L110 94Z" fill="url(#woodLid)" stroke="#f9d99a" stroke-width="2"/><path d="M102 43 L118 43 L130 70 L110 81 L90 70Z" fill="#dce0e4" stroke="#6b737b" stroke-width="3"/><circle cx="110" cy="61" r="5" fill="#4b515a"/></g>
+          <path d="M30 80 L110 119 L110 181 L30 141Z" fill="url(#woodFront)" stroke="#56361f" stroke-width="4"/><path d="M110 119 L190 80 L190 141 L110 181Z" fill="url(#woodSide)" stroke="#56361f" stroke-width="4"/><path d="M30 80 L110 119 L190 80" fill="none" stroke="#f3c778" stroke-width="4"/>
+          <path d="M43 91 L43 135 L57 142 L57 98Z" fill="#f0c274" opacity=".85"/><path d="M96 121 L110 128 L110 174 L96 167Z" fill="#6c431f"/><path d="M124 122 L138 115 L138 163 L124 170Z" fill="#c58a48"/><path d="M151 108 L165 101 L165 145 L151 152Z" fill="#c58a48"/><path d="M30 141 L110 181 L190 141" fill="none" stroke="#4a2d1b" stroke-width="4"/><path d="M87 111 L110 122 L133 111 L133 151 L110 164 L87 151Z" fill="#d7dce1" stroke="#4b535e" stroke-width="4"/><path d="M98 125 L110 131 L122 125 L122 146 L110 153 L98 146Z" fill="#777f8a"/><circle cx="110" cy="138" r="5" fill="#272e38"/>
+        </svg>
+      </button>
+    </div>
+    <div class="click-label">CLICK TO BUILD YOUR LUCK</div>
+    <div class="progress-wrap"><div class="progress-head"><span>開箱進度</span><strong id="progressText">0 / 10</strong></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div><p class="hint" id="progressHint">再點擊 <kbd>10</kbd> 次即可開箱</p></div>
+    <div class="bottom-stats">
+      <div class="mini-stat"><span>目前開箱門檻</span><strong id="thresholdStat">10<em>次點擊</em></strong></div>
+      <div class="mini-stat"><span>已收藏物品</span><strong id="collectedStat">0<em>/ 50 件</em></strong></div>
+      <div class="mini-stat"><span>神話物品</span><strong id="mythicStat">0<em>/ 3 件</em></strong></div>
+    </div>
+    <section class="odds-section"><div class="section-head"><div><h2>稀有度機率</h2><p>每次開箱獨立判定 · 祝你好運</p></div></div><div class="rarity-bars" id="rarityBars"></div></section>
+  </section>
+  <footer>LUCK TEST BOX · 僅供娛樂的機率模擬 · 不涉及真實交易</footer>
+</main>
+
+<div class="drawer-scrim" id="drawerScrim"></div>
+<aside class="drawer" id="drawer" aria-label="收藏圖鑑" aria-hidden="true">
+  <div class="drawer-head"><div><h2>收藏圖鑑</h2><p>收集所有物品，完成你的幸運清單。</p></div><button id="collectionClose" class="icon-btn" aria-label="關閉圖鑑">✕</button></div>
+  <div class="drawer-content"><div class="collection-summary"><span>圖鑑完成度</span><strong id="drawerCollectionCount">0 / 50</strong></div><div id="collectionGroups"></div></div>
+  <div class="drawer-foot"><button id="resetCollection" class="danger">重置圖鑑紀錄</button><button id="drawerDone" class="primary">完成</button></div>
+</aside>
+
+<div class="modal-scrim" id="itemModalScrim"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="itemModalName"><div class="eyebrow" id="itemModalRarity">ITEM DETAILS</div><div class="big-emoji" id="itemModalEmoji">🎁</div><h3 id="itemModalName">物品名稱</h3><p class="sub" id="itemModalSub">稀有度</p><div class="detail-grid"><div class="detail-cell"><span>單次掉落機率</span><strong id="itemModalOdds">0.00%</strong></div><div class="detail-cell"><span>累計抽中次數</span><strong id="itemModalCount">0 次</strong></div></div><div class="modal-actions"><button id="itemModalClose" class="primary">知道了</button></div></section></div>
+
+<div class="modal-scrim" id="confirmModalScrim"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle"><div class="big-emoji">⚠️</div><h3 id="confirmTitle">確定重置圖鑑？</h3><p class="confirm-copy">這會清除所有物品解鎖狀態與累計獲得次數，且無法復原。累計開箱次數與目前進度不會改變。</p><div class="modal-actions"><button id="cancelReset">取消</button><button id="confirmReset" class="danger">確認重置</button></div></section></div>
+
+<div class="spin-overlay" id="spinOverlay" aria-modal="true" role="dialog" aria-label="開箱轉盤"><div class="spin-window"><div class="spin-eyebrow">LUCK TEST BOX / CASE OPENING</div><h2 id="spinTitle">正在開啟箱子…</h2><p id="spinSubtitle">命運正在揭曉，看看你的戰利品。</p><div class="reel-shell"><div class="pointer"></div><div class="reel-track" id="reelTrack"></div></div><div class="spin-status" id="spinStatus">轉盤啟動中</div><div class="win-result" id="winResult"><div class="win-emoji" id="winEmoji">🎁</div><div class="win-label"><small id="winRarity">RARITY</small><strong id="winName">戰利品名稱</strong><span id="winOdds">掉落機率 0.00%</span></div></div><div class="dismiss-hint" id="dismissHint">點擊畫面任意處即可關閉，繼續下一次開箱</div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+'use strict';
+const RARITIES = [
+ {id:'common',name:'常見',en:'COMMON',color:'#E0E0E0',chance:60},
+ {id:'uncommon',name:'罕見',en:'UNCOMMON',color:'#3B82F6',chance:30},
+ {id:'epic',name:'史詩',en:'EPIC',color:'#A855F7',chance:8.25},
+ {id:'legendary',name:'傳奇',en:'LEGENDARY',color:'#F97316',chance:1.5},
+ {id:'mythic',name:'神話',en:'MYTHIC',color:'#EF4444',chance:.25}
+];
+const ITEMS = [
+ ...[['🍎','蘋果'],['🍌','香蕉'],['🍒','櫻桃'],['🍇','葡萄'],['🍉','西瓜'],['🍓','草莓'],['🍍','鳳梨'],['🥝','奇異果'],['🥑','酪梨'],['🥕','紅蘿蔔'],['🍪','餅乾'],['🍩','甜甜圈'],['🍕','披薩'],['🍔','漢堡'],['🍦','冰淇淋'],['⚽','足球'],['🏀','籃球'],['🚗','汽車'],['🚲','腳踏車'],['🎈','氣球']].map(([emoji,name])=>({id:'c-'+name,emoji,name,rarity:'common',chance:3})),
+ ...[['🎸','吉他'],['🎨','畫筆'],['🎮','遊戲手把'],['🚀','小火箭'],['🎧','耳機'],['📷','相機'],['🎹','鋼琴'],['🛹','滑板'],['🏄','衝浪板'],['🧩','拼圖'],['🪁','風箏'],['🎯','飛鏢靶'],['🛸','飛碟'],['🪄','魔法棒'],['🕹️','街機搖桿']].map(([emoji,name])=>({id:'u-'+name,emoji,name,rarity:'uncommon',chance:2})),
+ ...[['💎','鑽石'],['⚔️','雙劍'],['👑','皇冠'],['🔮','水晶球'],['🚀','火箭'],['🐲','龍頭'],['🦄','獨角獸'],['🏆','獎盃']].map(([emoji,name])=>({id:'e-'+name,emoji,name,rarity:'epic',chance:1.03125})),
+ {id:'l-scroll',emoji:'📜',name:'力量之卷軸',rarity:'legendary',chance:.18},
+ {id:'l-book',emoji:'📖',name:'智慧之書',rarity:'legendary',chance:.18},
+ {id:'l-note',emoji:'📒',name:'勇氣之筆記',rarity:'legendary',chance:.18},
+ {id:'l-armor',emoji:'🛡️',name:'勇者鎧甲',rarity:'legendary',chance:.96},
+ {id:'m-wand',emoji:'🪄',name:'神奇手杖',rarity:'mythic',chance:.13},
+ {id:'m-sword',emoji:'🗡️',name:'石中劍',rarity:'mythic',chance:.08},
+ {id:'m-dye',emoji:'🧪',name:'神秘染料',rarity:'mythic',chance:.04}
+];
+const STORAGE_KEY='luckTestBox.v1';
+const $ = id => document.getElementById(id);
+const rarityById = id => RARITIES.find(r=>r.id===id);
+const itemById = id => ITEMS.find(i=>i.id===id);
+const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let state = loadState();
+let clicks=0, spinning=false, spinFinished=false, pendingItem=null, audioCtx=null, toastTimer=null, lastTickAt=0, lastTickIndex=-1;
+
+function loadState(){
+ try{
+  const raw=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
+  const counts={}; for(const i of ITEMS) counts[i.id]=Math.max(0,Number(raw.counts?.[i.id])||0);
+  return {totalOpens:Math.max(0,Math.floor(Number(raw.totalOpens)||0)),counts,muted:raw.muted===true};
+ }catch(e){return {totalOpens:0,counts:Object.fromEntries(ITEMS.map(i=>[i.id,0])),muted:false};}
+}
+function saveState(){try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch(e){showToast('瀏覽器儲存空間不可用，進度可能無法保存');}}
+function currentThreshold(){return Math.min((state.totalOpens+1)*10,50);}
+function rarityForBackground(){const n=Math.random()*100;let sum=0;for(const r of RARITIES){sum+=r.chance;if(n<sum)return r;}return RARITIES[0];}
+function applyRandomBackground(){const r=rarityForBackground();document.body.style.setProperty('--rarity-bg',r.color);document.body.style.setProperty('--stage-color',r.color);}
+function unlockedCount(){return ITEMS.filter(i=>state.counts[i.id]>0).length;}
+function rarityUnlockedCount(id){return ITEMS.filter(i=>i.rarity===id&&state.counts[i.id]>0).length;}
+function formatPct(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:4})+'%';}
+function setText(id,text){$(id).textContent=text;}
+function render(){
+ const threshold=currentThreshold(), pct=clicks/threshold*100;
+ setText('progressText',`${clicks} / ${threshold}`);$('progressFill').style.width=Math.min(100,pct)+'%';
+ setText('progressHint',clicks===0?`再點擊 ${threshold} 次即可開箱`:clicks<threshold?`還差 ${threshold-clicks} 次點擊，就能開啟下一個箱子！`:'正在準備開箱…');
+ setText('thresholdStat',threshold);setText('collectedStat',`${unlockedCount()} `);$('collectedStat').innerHTML=`${unlockedCount()}<em>/ ${ITEMS.length} 件</em>`;
+ $('mythicStat').innerHTML=`${rarityUnlockedCount('mythic')}<em>/ 3 件</em>`;
+ setText('totalOpensTop',state.totalOpens);setText('headerCollectionCount',`${unlockedCount()}/${ITEMS.length}`);setText('drawerCollectionCount',`${unlockedCount()} / ${ITEMS.length}`);
+ $('soundToggle').textContent=state.muted?'🔇':'🔊';$('soundToggle').setAttribute('aria-label',state.muted?'開啟音效':'關閉音效');
+ renderRarityBars();
+}
+function renderRarityBars(){
+ $('rarityBars').innerHTML=RARITIES.map(r=>`<div class="rarity-bar"><div class="bar-top"><span style="color:${r.color}">${r.name}</span><span>${r.chance}%</span></div><div class="pct">${r.en}</div><div class="line"><i style="width:${r.chance/60*100}%;background:${r.color}"></i></div></div>`).join('');
+}
+function renderCollection(){
+ $('collectionGroups').innerHTML=RARITIES.map(r=>{
+ const items=ITEMS.filter(i=>i.rarity===r.id);
+ return `<section class="rarity-group"><div class="rarity-title"><span style="color:${r.color}">${r.name} <span style="color:#9ba8ba;font-weight:500">· ${r.en}</span></span><span>${items.filter(i=>state.counts[i.id]>0).length} / ${items.length}</span></div><div class="item-grid">${items.map(i=>{
+ const unlocked=state.counts[i.id]>0;
+ return `<button class="collection-item ${unlocked?'':'locked'}" data-item="${esc(i.id)}" aria-label="${unlocked?esc(i.name):'未解鎖物品'}"><span class="emoji">${unlocked?i.emoji:'?'}</span><span class="item-name">${unlocked?esc(i.name):'???'}</span></button>`;
+ }).join('')}</div></section>`;
+ }).join('');
+}
+function showItemModal(item){
+ const r=rarityById(item.rarity);setText('itemModalRarity',r.en);setText('itemModalEmoji',item.emoji);setText('itemModalName',item.name);setText('itemModalSub',r.name+' · '+r.en);setText('itemModalOdds',formatPct(item.chance));setText('itemModalCount',`${state.counts[item.id]} 次`);
+ $('itemModalScrim').style.setProperty('--win-color',r.color);$('itemModalScrim').classList.add('show');
+}
+function closeItemModal(){$('itemModalScrim').classList.remove('show');}
+function openDrawer(){renderCollection();$('drawer').classList.add('show');$('drawer').setAttribute('aria-hidden','false');$('drawerScrim').classList.add('show');}
+function closeDrawer(){$('drawer').classList.remove('show');$('drawer').setAttribute('aria-hidden','true');$('drawerScrim').classList.remove('show');}
+function showToast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200);}
+function ensureAudio(){
+ if(state.muted)return null;
+ try{if(!audioCtx){const C=window.AudioContext||window.webkitAudioContext;if(!C)return null;audioCtx=new C();}if(audioCtx.state==='suspended')audioCtx.resume();return audioCtx;}catch(e){return null;}
+}
+function tone(freq,duration=.09,type='sine',volume=.08,delay=0){
+ const ctx=ensureAudio();if(!ctx)return;
+ const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=type;osc.frequency.setValueAtTime(freq,ctx.currentTime+delay);
+ gain.gain.setValueAtTime(.0001,ctx.currentTime+delay);gain.gain.exponentialRampToValueAtTime(volume,ctx.currentTime+delay+.012);gain.gain.exponentialRampToValueAtTime(.0001,ctx.currentTime+delay+duration);
+ osc.connect(gain);gain.connect(ctx.destination);osc.start(ctx.currentTime+delay);osc.stop(ctx.currentTime+delay+duration+.02);
+}
+function playClick(){tone(95,.12,'triangle',.15);tone(58,.16,'sine',.12,.01);}
+function playTick(){const now=performance.now();if(now-lastTickAt<22)return;lastTickAt=now;tone(760,.025,'square',.025);}
+function playWin(rarity){const n=RARITIES.findIndex(r=>r.id===rarity)+1;const base=[523.25,587.33,659.25,783.99,880][Math.min(n-1,4)];for(let j=0;j<n;j++)tone(base*(1+j*.12),.18,'sine',.075,j*.105);}
+function pickItem(){
+ const n=Math.random()*100;let cumulative=0;
+ for(const r of RARITIES){cumulative+=r.chance;if(n<cumulative){const pool=ITEMS.filter(i=>i.rarity===r.id);const p=Math.random()*pool.reduce((s,i)=>s+i.chance,0);let sum=0;for(const item of pool){sum+=item.chance;if(p<sum)return item;}return pool[pool.length-1];}}
+ return ITEMS[0];
+}
+function makeReel(winner){
+ const track=$('reelTrack');track.innerHTML='';
+ const total=43,targetIndex=34;
+ for(let n=0;n<total;n++){
+  const item=n===targetIndex?winner:ITEMS[Math.floor(Math.random()*ITEMS.length)];
+  const r=rarityById(item.rarity),card=document.createElement('div');
+  card.className='reel-card'+(n===targetIndex?' target':'');card.style.setProperty('--rarity',r.color);
+  card.innerHTML=`<span class="reel-emoji">${item.emoji}</span><span class="reel-name">${esc(item.name)}</span>`;
+  card.dataset.target=n===targetIndex?'yes':'no';track.appendChild(card);
+ }
+ return targetIndex;
+}
+function beginSpin(item){
+ spinning=true;spinFinished=false;pendingItem=item;lastTickIndex=-1;lastTickAt=0;
+ $('crateButton').classList.add('opening');setText('statusText','轉盤進行中 · 正在判定戰利品');
+ $('spinTitle').textContent='正在開啟箱子…';$('spinSubtitle').textContent='命運正在揭曉，看看你的戰利品。';setText('spinStatus','轉盤啟動中');$('winResult').classList.remove('show');$('dismissHint').classList.remove('show');
+ const targetIndex=makeReel(item);$('spinOverlay').classList.add('show');
+ const track=$('reelTrack'),shell=document.querySelector('.reel-shell'),card=track.children[targetIndex];
+ const shellRect=shell.getBoundingClientRect(),cardCenter=card.offsetLeft+card.offsetWidth/2;
+ const endX=shellRect.width/2-cardCenter;
+ track.style.transition='none';track.style.transform='translateX(0)';track.offsetHeight;
+ const duration=5600;
+ requestAnimationFrame(()=>{track.style.transition=`transform ${duration}ms cubic-bezier(.08,.68,.12,1)`;track.style.transform=`translateX(${endX}px)`;});
+ let tickLoop=0;
+ const tickTimer=setInterval(()=>{
+  if(!spinning){clearInterval(tickTimer);return;}
+  const transform=getComputedStyle(track).transform;
+  let x=0;try{x=new DOMMatrixReadOnly(transform).m41;}catch(e){}
+  const shellCenter=shell.getBoundingClientRect().width/2;
+  let closest=-1,min=Infinity;
+  [...track.children].forEach((c,i)=>{const center=c.offsetLeft+c.offsetWidth/2+x;const d=Math.abs(center-shellCenter);if(d<min){min=d;closest=i;}});
+  if(closest!==lastTickIndex){lastTickIndex=closest;playTick();}
+  tickLoop++;
+ },35);
+ track.ontransitionend=()=>{
+  clearInterval(tickTimer);if(!spinning)return;
+  spinning=false;spinFinished=true;
+  $('crateButton').classList.remove('opening');
+  const r=rarityById(item.rarity);
+  setText('spinTitle','開箱完成！');$('spinSubtitle').textContent='恭喜獲得以下戰利品';setText('spinStatus','已成功取得物品');
+  $('winEmoji').textContent=item.emoji;setText('winRarity',r.en);setText('winName',item.name);setText('winOdds',`單次掉落機率 ${formatPct(item.chance)}`);
+  $('winResult').style.setProperty('--win-color',r.color);$('winResult').classList.add('show');$('dismissHint').classList.add('show');playWin(item.rarity);
+  setText('statusText','開箱完成 · 點擊任意處繼續');render();
+ };
+}
+function dismissSpin(){
+ if(!spinFinished)return;
+ $('spinOverlay').classList.remove('show');$('crateButton').classList.remove('opening');$('reelTrack').ontransitionend=null;
+ clicks=0;pendingItem=null;spinFinished=false;setText('statusText','系統就緒 · 等待開箱');render();
+}
+function handleCrateClick(){
+ if(spinning||spinFinished||$('drawer').classList.contains('show'))return;
+ ensureAudio();playClick();
+ const threshold=currentThreshold();clicks=Math.min(clicks+1,threshold);
+ $('crateButton').classList.remove('shake');void $('crateButton').offsetWidth;$('crateButton').classList.add('shake');
+ render();
+ if(clicks>=threshold){
+  // Resolve and record the result immediately, before the animation begins.
+  const item=pickItem();state.totalOpens++;state.counts[item.id]=(state.counts[item.id]||0)+1;saveState();render();
+  beginSpin(item);
+ }
+}
+$('crateButton').addEventListener('click',handleCrateClick);
+$('collectionOpen').addEventListener('click',openDrawer);$('collectionClose').addEventListener('click',closeDrawer);$('drawerDone').addEventListener('click',closeDrawer);$('drawerScrim').addEventListener('click',closeDrawer);
+$('collectionGroups').addEventListener('click',e=>{const b=e.target.closest('[data-item]');if(!b)return;const item=itemById(b.dataset.item);if(!item)return;if(!state.counts[item.id]){showToast('尚未解鎖此物品');return;}showItemModal(item);});
+$('itemModalClose').addEventListener('click',closeItemModal);$('itemModalScrim').addEventListener('click',e=>{if(e.target===$('itemModalScrim'))closeItemModal();});
+$('resetCollection').addEventListener('click',()=>{$('confirmModalScrim').classList.add('show');});
+$('cancelReset').addEventListener('click',()=>$('confirmModalScrim').classList.remove('show'));
+$('confirmModalScrim').addEventListener('click',e=>{if(e.target===$('confirmModalScrim'))$('confirmModalScrim').classList.remove('show');});
+$('confirmReset').addEventListener('click',()=>{
+ state.counts=Object.fromEntries(ITEMS.map(i=>[i.id,0]));saveState();render();renderCollection();$('confirmModalScrim').classList.remove('show');showToast('圖鑑紀錄已重置');
+});
+$('soundToggle').addEventListener('click',()=>{state.muted=!state.muted;saveState();render();if(!state.muted){ensureAudio();tone(660,.08,'sine',.05);}});
+$('spinOverlay').addEventListener('click',()=>{if(spinFinished)dismissSpin();});
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){if($('confirmModalScrim').classList.contains('show'))$('confirmModalScrim').classList.remove('show');else if($('itemModalScrim').classList.contains('show'))closeItemModal();else if($('drawer').classList.contains('show'))closeDrawer();else if(spinFinished)dismissSpin();}
+});
+applyRandomBackground();render();renderCollection();
+})();
+</script>
+</body>
+</html>
